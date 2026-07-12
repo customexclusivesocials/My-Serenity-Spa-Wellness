@@ -1,1 +1,262 @@
+/* ---------- 1. VARIABLES & FOUNDATION ---------- */
+:root {
+  /* Color Palette: Deep Sanctuary & Warm Metals */
+  --bg-deep: #1e0f21;
+  --bg-mid: #2b1730;
+  --bg-dark: #160c17;
+  --bone: #f9f6f0;
+  --lavender-dim: #b5a9c2;
+  --ink-plum: #241326;
+  --ink-soft: rgba(249, 246, 240, 0.75);
+  --mud-gold: #c5a880;
+  --mud-gold-soft: rgba(197, 168, 128, 0.4);
+  --line-dark: rgba(36, 19, 38, 0.12);
+  
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-display: 'Fraunces', serif;
+}
 
+/* ---------- 2. HERO SANCTUARY ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center; /* Balanced vertical centering */
+  justify-content: flex-start;
+  background:
+    radial-gradient(ellipse 900px 600px at 15% -10%, rgba(156, 140, 184, 0.4), transparent 65%),
+    radial-gradient(ellipse 800px 600px at 85% 20%, rgba(197, 168, 128, 0.22), transparent 65%),
+    linear-gradient(180deg, var(--bg-mid) 0%, #241326 55%, var(--bg-dark) 100%);
+  overflow: hidden;
+  padding: 120px 0 80px 0;
+}
+
+/* Soft, ambient drifting mist */
+.mist {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 45% at 30% 80%, rgba(249, 246, 240, 0.08), transparent 75%),
+    radial-gradient(ellipse 50% 40% at 75% 65%, rgba(249, 246, 240, 0.05), transparent 75%);
+  animation: drift 25s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+@keyframes drift {
+  from { transform: scale(1) translate(-2%, 1%); }
+  to { transform: scale(1.05) translate(2%, -2%); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--mud-gold);
+  margin-bottom: 24px;
+  display: block;
+}
+
+.hero h1 {
+  font-size: clamp(44px, 7vw, 92px);
+  color: var(--bone);
+  line-height: 1.05;
+  max-width: 15ch;
+  font-weight: 300;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-family: var(--font-serif);
+  color: var(--lavender-dim);
+  font-weight: 400;
+}
+
+.hero-sub {
+  margin-top: 28px;
+  max-width: 48ch;
+  color: var(--ink-soft);
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Luxury CTA Integration */
+.hero-actions {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 16px 36px;
+  background: var(--mud-gold);
+  color: var(--bg-dark);
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  border-radius: 0px; /* Editorial square look */
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button:hover {
+  background: var(--bone);
+  color: var(--ink-plum);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+.hero-addr {
+  font-size: 13px;
+  color: var(--lavender-dim);
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+/* Elegant Scroll Indicator */
+.scroll-cue {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--lavender-dim);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.scroll-cue .line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(var(--mud-gold), transparent);
+  transform-origin: top;
+  animation: dynamicPulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes dynamicPulse {
+  0% { transform: scaleY(0); opacity: 0; }
+  50% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0); opacity: 0; origin: bottom; }
+}
+
+/* ---------- 3. THE INTRO STRIP ---------- */
+.intro {
+  background: var(--bone);
+  padding: 140px 40px 120px;
+  text-align: center;
+}
+
+.intro .wrap {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.intro h2 {
+  font-size: clamp(30px, 4.2vw, 48px);
+  line-height: 1.25;
+  color: var(--ink-plum);
+  font-weight: 300;
+}
+
+.intro h2 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--mud-gold);
+}
+
+.intro p {
+  margin-top: 32px;
+  color: rgba(36, 19, 38, 0.75);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 66ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive Grid Pillars */
+.pillars {
+  margin-top: 72px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.pillars div {
+  padding: 40px 20px;
+  border-left: 1px solid var(--line-dark);
+  transition: background 0.3s ease;
+}
+
+.pillars div:first-child {
+  border-left: none;
+}
+
+.pillars div:hover {
+  background: rgba(197, 168, 128, 0.04);
+}
+
+.pillars .num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--mud-gold);
+  font-size: 16px;
+}
+
+.pillars .lbl {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  margin-top: 8px;
+  color: var(--ink-plum);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- 4. RESPONSIVE BREAKPOINTS ---------- */
+@media (max-width: 992px) {
+  .pillars {
+    grid-template-columns: 1fr;
+    border-bottom: none;
+  }
+  .pillars div {
+    border-left: none;
+    border-bottom: 1px solid var(--line-dark);
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    align-items: flex-end;
+    padding-bottom: 100px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .scroll-cue {
+    display: none; /* Hide on mobile to clear clutter */
+  }
+}
