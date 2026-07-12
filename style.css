@@ -1,262 +1,167 @@
-/* ---------- 1. VARIABLES & FOUNDATION ---------- */
-:root {
-  /* Color Palette: Deep Sanctuary & Warm Metals */
-  --bg-deep: #1e0f21;
-  --bg-mid: #2b1730;
-  --bg-dark: #160c17;
-  --bone: #f9f6f0;
-  --lavender-dim: #b5a9c2;
-  --ink-plum: #241326;
-  --ink-soft: rgba(249, 246, 240, 0.75);
-  --mud-gold: #c5a880;
-  --mud-gold-soft: rgba(197, 168, 128, 0.4);
-  --line-dark: rgba(36, 19, 38, 0.12);
-  
-  /* Typography */
-  --font-serif: 'Cormorant Garamond', serif;
-  --font-display: 'Fraunces', serif;
-}
-
-/* ---------- 2. HERO SANCTUARY ---------- */
+/* ---------- HERO CONTAINER ---------- */
 .hero {
-  position: relative;
+  position: relative; 
   min-height: 100vh;
-  display: flex;
-  align-items: center; /* Balanced vertical centering */
-  justify-content: flex-start;
+  min-height: 100dvh; /* Smooth handling of mobile address bars */
+  display: flex; 
+  align-items: center; /* Changes from flex-end to vertically center the content safely */
   background:
-    radial-gradient(ellipse 900px 600px at 15% -10%, rgba(156, 140, 184, 0.4), transparent 65%),
-    radial-gradient(ellipse 800px 600px at 85% 20%, rgba(197, 168, 128, 0.22), transparent 65%),
-    linear-gradient(180deg, var(--bg-mid) 0%, #241326 55%, var(--bg-dark) 100%);
+    radial-gradient(ellipse 900px 600px at 18% -10%, rgba(156,140,184,0.35), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 90% 10%, rgba(183,134,63,0.18), transparent 60%),
+    linear-gradient(180deg, #2B1730 0%, #241326 55%, #1B0F1C 100%);
   overflow: hidden;
-  padding: 120px 0 80px 0;
+  box-sizing: border-box;
 }
 
-/* Soft, ambient drifting mist */
+/* Atmospheric mist fix to prevent clipping */
 .mist {
-  position: absolute;
-  inset: 0;
+  position: absolute; 
+  inset: 0; 
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 45% at 30% 80%, rgba(249, 246, 240, 0.08), transparent 75%),
-    radial-gradient(ellipse 50% 40% at 75% 65%, rgba(249, 246, 240, 0.05), transparent 75%);
-  animation: drift 25s ease-in-out infinite alternate;
-  mix-blend-mode: screen;
+    radial-gradient(ellipse 60% 40% at 30% 85%, rgba(247,242,236,0.10), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 75% 70%, rgba(247,242,236,0.07), transparent 70%);
+  animation: drift 22s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 @keyframes drift {
-  from { transform: scale(1) translate(-2%, 1%); }
-  to { transform: scale(1.05) translate(2%, -2%); }
+  from { transform: scale(1) translateX(-1%) translateY(0); }
+  to { transform: scale(1.04) translateX(1%) translateY(-1%); }
 }
 
+.hero-strata {
+  position: absolute; 
+  left: 0; right: 0; bottom: 0; 
+  width: 100%; 
+  opacity: 0.4; /* Softened so it doesn't clip layout text visibility */
+  pointer-events: none;
+}
+
+/* ---------- HERO CONTENT PANEL ---------- */
 .hero-content {
-  position: relative;
-  z-index: 3;
+  position: relative; 
+  z-index: 3; 
   width: 100%;
-  max-width: 1200px;
+  max-width: 1180px; 
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 140px 40px 100px; /* Reduced vertical padding so text stays bound to background */
+  box-sizing: border-box;
 }
 
-.eyebrow {
-  font-size: 12px;
+.hero-content .eyebrow {
+  margin-bottom: 22px;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  color: var(--mud-gold);
-  margin-bottom: 24px;
-  display: block;
+  letter-spacing: 0.15em;
+  color: var(--mud-gold, #B7863F);
 }
 
 .hero h1 {
-  font-size: clamp(44px, 7vw, 92px);
-  color: var(--bone);
-  line-height: 1.05;
-  max-width: 15ch;
-  font-weight: 300;
+  font-size: clamp(38px, 5.5vw, 76px); /* Balanced to prevent overly violent wrapping */
+  color: var(--bone, #FBF9F6);
+  line-height: 1.1;
+  max-width: 18ch;
+  margin: 0;
 }
 
 .hero h1 em {
-  font-style: italic;
-  font-family: var(--font-serif);
-  color: var(--lavender-dim);
+  font-style: italic; 
+  font-family: 'Cormorant Garamond', serif; 
+  color: var(--lavender-dim, #C3B8D1); 
   font-weight: 400;
 }
 
 .hero-sub {
-  margin-top: 28px;
-  max-width: 48ch;
-  color: var(--ink-soft);
-  font-size: 18px;
-  line-height: 1.6;
+  margin-top: 24px; 
+  max-width: 58ch; 
+  color: var(--ink-soft, rgba(251,249,246,0.75)); /* High contrast white-plum tint */
+  font-size: 17px; 
+  line-weight: 1.6;
   font-weight: 300;
 }
 
-/* Luxury CTA Integration */
-.hero-actions {
-  margin-top: 40px;
-  display: flex;
+/* ---------- META & ACTIONS CORRECTION ---------- */
+.hero-meta {
+  margin-top: 40px; 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 20px 32px; 
   align-items: center;
-  gap: 24px;
 }
 
-.cta-button {
-  display: inline-block;
-  padding: 16px 36px;
-  background: var(--mud-gold);
-  color: var(--bg-dark);
-  text-transform: uppercase;
+/* Styled Button to completely fix the empty box look */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mud-gold, #B7863F);
+  color: #1B0F1C;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 16px 32px;
+  border-radius: 4px;
   text-decoration: none;
-  border-radius: 0px; /* Editorial square look */
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
 
-.cta-button:hover {
-  background: var(--bone);
-  color: var(--ink-plum);
+.hero-cta:hover {
+  background: var(--bone, #FBF9F6);
+  color: #1B0F1C;
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
 }
 
 .hero-addr {
-  font-size: 13px;
-  color: var(--lavender-dim);
-  letter-spacing: 0.05em;
-  opacity: 0.8;
+  font-size: 14px; 
+  color: var(--lavender-dim, #C3B8D1); 
+  letter-spacing: 0.03em;
+  line-height: 1.4;
 }
 
-/* Elegant Scroll Indicator */
+/* ---------- SCROLL CUE POSITIONING ---------- */
 .scroll-cue {
-  position: absolute;
-  right: 40px;
-  bottom: 40px;
+  position: absolute; 
+  right: 40px; 
+  bottom: 40px; 
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
   gap: 12px;
-  color: var(--lavender-dim);
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  color: var(--ink-soft, rgba(251,249,246,0.5)); 
+  font-size: 11px; 
+  letter-spacing: 0.2em; 
   text-transform: uppercase;
 }
 
 .scroll-cue .line {
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(var(--mud-gold), transparent);
-  transform-origin: top;
-  animation: dynamicPulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  width: 1px; 
+  height: 50px; 
+  background: linear-gradient(var(--mud-gold, #B7863F), transparent); 
+  animation: pulse 2.4s ease-in-out infinite;
 }
 
-@keyframes dynamicPulse {
-  0% { transform: scaleY(0); opacity: 0; }
-  50% { transform: scaleY(1); opacity: 1; }
-  100% { transform: scaleY(0); opacity: 0; origin: bottom; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
 }
 
-/* ---------- 3. THE INTRO STRIP ---------- */
-.intro {
-  background: var(--bone);
-  padding: 140px 40px 120px;
-  text-align: center;
-}
-
-.intro .wrap {
-  max-width: 880px;
-  margin: 0 auto;
-}
-
-.intro h2 {
-  font-size: clamp(30px, 4.2vw, 48px);
-  line-height: 1.25;
-  color: var(--ink-plum);
-  font-weight: 300;
-}
-
-.intro h2 em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--mud-gold);
-}
-
-.intro p {
-  margin-top: 32px;
-  color: rgba(36, 19, 38, 0.75);
-  font-size: 17px;
-  line-height: 1.7;
-  max-width: 66ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Responsive Grid Pillars */
-.pillars {
-  margin-top: 72px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
-}
-
-.pillars div {
-  padding: 40px 20px;
-  border-left: 1px solid var(--line-dark);
-  transition: background 0.3s ease;
-}
-
-.pillars div:first-child {
-  border-left: none;
-}
-
-.pillars div:hover {
-  background: rgba(197, 168, 128, 0.04);
-}
-
-.pillars .num {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--mud-gold);
-  font-size: 16px;
-}
-
-.pillars .lbl {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 20px;
-  margin-top: 8px;
-  color: var(--ink-plum);
-  letter-spacing: -0.01em;
-}
-
-/* ---------- 4. RESPONSIVE BREAKPOINTS ---------- */
-@media (max-width: 992px) {
-  .pillars {
-    grid-template-columns: 1fr;
-    border-bottom: none;
-  }
-  .pillars div {
-    border-left: none;
-    border-bottom: 1px solid var(--line-dark);
-    padding: 30px 20px;
-  }
-}
-
+/* ---------- MOBILE FIXES ---------- */
 @media (max-width: 768px) {
-  .hero {
-    align-items: flex-end;
-    padding-bottom: 100px;
+  .hero-content {
+    padding: 120px 24px 80px;
   }
-  .hero-actions {
+  .hero-meta {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
   }
+  .hero-cta {
+    width: 100%;
+  }
   .scroll-cue {
-    display: none; /* Hide on mobile to clear clutter */
+    display: none; /* Hide on mobile to save precious vertical room */
   }
 }
