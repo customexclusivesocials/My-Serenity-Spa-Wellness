@@ -107,65 +107,31 @@
   .menu-toggle{display:none; background:none; border:none; color:var(--bone); font-size:22px;}
 
   /* ---------- HERO (REDESIGNED) ---------- */
-  .hero {
-    position: relative; 
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex; 
-    align-items: center;
-    background:
-      radial-gradient(ellipse 900px 600px at 18% -10%, rgba(156,140,184,0.35), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(183,134,63,0.18), transparent 60%),
-      linear-gradient(180deg, #2B1730 0%, #241326 55%, #1B0F1C 100%);
-    overflow: hidden;
-    box-sizing: border-box;
-  }
-  .mist {
-    position: absolute; inset: 0; pointer-events: none;
-    background:
-      radial-gradient(ellipse 60% 40% at 30% 85%, rgba(247,242,236,0.10), transparent 70%),
-      radial-gradient(ellipse 50% 35% at 75% 70%, rgba(247,242,236,0.07), transparent 70%);
-    animation: drift 22s ease-in-out infinite alternate;
-    will-change: transform;
-  }
-  @keyframes drift {
-    from { transform: scale(1) translateX(-1%) translateY(0); }
-    to { transform: scale(1.04) translateX(1%) translateY(-1%); }
-  }
-  .hero-strata {
-    position: absolute; left: 0; right: 0; bottom: 0; width: 100%; opacity: 0.4; pointer-events: none;
-  }
-  .hero-content {
-    position: relative; z-index: 3; width: 100%; max-width: 1180px; margin: 0 auto;
-    padding: 140px 40px 100px; box-sizing: border-box;
-  }
-  .hero-content .eyebrow { margin-bottom: 22px; }
-  .hero h1 {
-    font-size: clamp(38px, 5.5vw, 76px);
-    color: var(--bone);
-    line-height: 1.1;
-    max-width: 18ch;
-    margin: 0;
-  }
-  .hero h1 em { font-style: italic; font-family: 'Cormorant Garamond', serif; color: var(--lavender-dim); font-weight: 400; }
-  .hero-sub {
-    margin-top: 24px; max-width: 58ch; color: var(--ink-soft); font-size: 17px; font-weight: 300; line-height: 1.6;
-  }
-  .hero-meta {
-    margin-top: 40px; display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center;
-  }
-  .hero-addr { font-size: 14px; color: var(--lavender-dim); letter-spacing: 0.03em; line-height: 1.4; }
-  .scroll-cue {
-    position: absolute; right: 40px; bottom: 40px; z-index: 3;
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-    color: var(--ink-soft); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  }
-  .scroll-cue .line { 
-    width: 1px; height: 50px; background: linear-gradient(var(--mud-gold), transparent); 
-    animation: pulse 2.4s ease-in-out infinite; 
-  }
-  @keyframes pulse { 0%, 100% { opacity: 0.3; transform: scaleY(0.8); } 50% { opacity: 1; transform: scaleY(1); } }
+  <section class="hero">
+  <!-- Advanced Background Layers -->
+  <div class="hero-bg-image"></div>
+  <div class="mist"></div>
+  <div class="hero-strata"></div>
+  <div class="hero-overlay"></div>
 
+  <!-- Content Container -->
+  <div class="hero-content">
+    <div class="eyebrow">Featured Collection</div>
+    <h1>Elevating the art of <em>modern design</em></h1>
+    <p class="hero-sub">
+      A curated exploration of atmospheric aesthetics, depth, and texture. Crafted for those who appreciate the subtle interplay of light and shadow.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-addr">Studio Gallery<br>Montreal, QC</div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="line"></div>
+  </div>
+</section>
   /* ---------- INTRO STRIP ---------- */
   .intro{
     background:var(--bone); padding:110px 40px 100px;
